@@ -22,7 +22,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'm0wh^s1ar^apybrr=@jv5t8ogmh04!drhweh$*3$bwh*=i@4wa'
+SECRET_KEY = os.getenv('SECRET_KEY','m0wh^s1ar^apybrr=@jv5t8ogmh04!drhweh$*3$bwh*=i@4wa')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -41,6 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #libs
+    'widget_tweaks',
+    #app
     'core',
     'catalog',
 ]
@@ -128,6 +132,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+#E-mail
+EMAIL_HOST = ''
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_DEAULT_FROM = 'admin@djangoecommercehuehuebr.com'
 
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
@@ -138,7 +147,7 @@ ALLOWED_HOSTS = ['*']
 
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 
-#try:
-#    from .local_settings import *
-#except ImportError:
-#    pass
+try:
+    from .local_settings import *
+except ImportError:
+    pass

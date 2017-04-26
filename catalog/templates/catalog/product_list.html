@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %} Listagem de produtos | {{ block.super }}{% endblock %}
+{% load pagination %}
 
 
 {% block container %}
@@ -23,4 +24,6 @@
 			</div>
 			{%  endfor %}
 		</div>
+    {% pagination request paginator page_obj %}
+
 {%  endblock %}
