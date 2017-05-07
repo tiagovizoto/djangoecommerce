@@ -4,9 +4,13 @@ from catalog.models import Category
 from django.core.mail import send_mail
 from django.conf import settings
 from .forms import ContactForm
-from django.views.generic import View
+from django.core.urlresolvers import reverse_lazy
+from django.contrib.auth.forms import UserCreationForm
+from django.views.generic import View, CreateView
+from django.contrib.auth import get_user_model
 
 
+User = get_user_model()
 # Create your views here.
 class IndexView(View):
 
@@ -44,3 +48,5 @@ def contact(request):
         'success': success
     }
     return render(request, 'contact.html', context)
+
+

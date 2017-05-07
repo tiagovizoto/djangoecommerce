@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     #app
     'core',
     'catalog',
+    'accounts'
 ]
 
 MIDDLEWARE = [
@@ -147,7 +148,16 @@ ALLOWED_HOSTS = ['*']
 
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 
-#try:
-#    from .local_settings import *
-#except ImportError:
-#    pass
+LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "index"
+LOGOUT_URL = "logout"
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'accounts.backends.ModelBackend',
+
+)
+AUTH_USER_MODEL = 'accounts.User'
+try:
+    from .local_settings import *
+except ImportError:
+    pass
